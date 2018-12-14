@@ -1,0 +1,27 @@
+{
+    "name": "geography-server",
+    "version": "1.0.0",
+    "description": "Server on Node.js for Geography quiz.",
+    "main": "server.js",
+    "scripts": {
+        "test": "npm test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YegorMaksymchuk/geography-application.git"
+    },
+    "keywords": [
+        "API"
+    ],
+    "author": "yemax",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/YegorMaksymchuk/geography-application/issues"
+    },
+    "homepage": "https://github.com/YegorMaksymchuk/geography-application#readme",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "mongoose": "^5.3.16"
+    }
+}

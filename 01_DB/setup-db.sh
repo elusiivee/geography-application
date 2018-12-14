@@ -1,237 +1,236 @@
-var data = [{
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, {
-    "question": "",
-    "answers": ["", "", "", ""],
-    "answer": "",
-    "wieght": 1
-}, ];
+#!/usr/bin/env bash
 
-var user = process.env.MONGO_INITDB_ROOT_USERNAME;
-var pswd = process.env.MONGO_INITDB_ROOT_PASSWORD;
-
-db.auth(user, pswd);
-db.questions.insertMany(data);
+mongo mongodb://127.0.0.1:27017/geographydb <<EOF
+db.questions.insertMany([{
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, {
+    "question": "",
+    "answers": ["", "", "", ""],
+    "answer": "",
+    "wieght": 1
+}, ]);
+db.getCollectionNames();
+EOF
