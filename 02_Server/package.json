@@ -2,7 +2,7 @@
     "name": "geography-server",
     "version": "1.0.0",
     "description": "Server on Node.js for Geography quiz.",
-    "main": "server.js",
+    "main": "app.js",
     "scripts": {
         "test": "npm test"
     },
@@ -22,6 +22,6 @@
     "dependencies": {
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
-        "mongoose": "^5.3.16"
+        "mongoose": "^5.4.0"
     }
 }
