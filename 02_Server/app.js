@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost:27017/geographydb?authSource=admin');
+mongoose.connect('mongodb://admin:admin@localhost:27017/geographydb?authSource=admin');
 mongoose.Promise = global.Promise;
 
 //set up static files
