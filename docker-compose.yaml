@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  geography-db:
+    container_name: geography-db
+    hostname: geography-db
+    build: 01_DB/.
+    ports:
+      - "27017:27017"
+  geography-server:
+    container_name: geography-server
+    build: 02_Server/.
+    depends_on:
+      - geography-db
+    ports:
+      - "4000:4000"
+    command: npm start
+    environment:
+      WAIT_HOSTS: geography-db:27017

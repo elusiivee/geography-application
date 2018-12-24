@@ -9,7 +9,7 @@ const swaggerDocument = require('./swagger.json');
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://admin:admin@localhost:27017/geographydb?authSource=admin');
+mongoose.connect('mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin');
 mongoose.Promise = global.Promise;
 
 //set up static files
