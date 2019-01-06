@@ -3,12 +3,9 @@ FROM node:8.14-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json ./
 COPY . /usr/src/app
 RUN npm install
 
 EXPOSE 4000
 
 CMD npm start
-
-

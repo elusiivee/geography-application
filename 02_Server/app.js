@@ -32,5 +32,5 @@ app.use('/api/v1', router);
 
 // listen for requests
 app.listen(process.env.port || 4000, function() {
-  console.log('now listening for requests');
+  console.log('Server started and wait requests');
 });

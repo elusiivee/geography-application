@@ -14,6 +14,5 @@ services:
       - geography-db
     ports:
       - "4000:4000"
-    command: npm run start
     environment:
       WAIT_HOSTS: geography-db:27017

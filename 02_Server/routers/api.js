@@ -13,20 +13,18 @@ router.get('/questions/all', (req, res) => {
     .then((questions) => {
       console.log('Show all questions.');
       res.json(questions);
-    })
-    .catch(serverError);
+    }).catch(serverError);
 });
 
 // get a specific amount of questions from the db
 router.get('/questions', (req, res) => {
   Question.find()
     .then((questions) => {
-      var number = req.query.number;
+      let number = req.query.number;
       console.log('Show ' + number + ' questions.');
-      var result = questions.slice(0, number);
+      let result = questions.slice(0, number);
       res.json(result);
-    })
-    .catch(serverError);
+    }).catch(serverError);
 });
 // get a single question from the db
 router.get('/questions/:id', (req, res) => {
@@ -34,8 +32,7 @@ router.get('/questions/:id', (req, res) => {
     .then((question) => {
       console.log('Show one question');
       res.json(question);
-    })
-    .catch(serverError);
+    }).catch(serverError);
 });
 
 router.post('/questions', (req, res) => {

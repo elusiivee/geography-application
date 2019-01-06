@@ -14,7 +14,7 @@ const QuestionSchema = new Schema({
         type: String,
         default: undefined
     },
-    wieght: {
+    weight: {
         type: Number,
         default: undefined
     }

@@ -5,12 +5,12 @@ services:
     container_name: geography-db
     hostname: geography-db
     image: yemax/geography-mongodb:v1
-    ports:
-      - "27017:27017"
+    expose:
+      - "27017"
   geography-server:
     container_name: geography-server
     image: yemax/geography-api:v1
-    depends_on:
+    links:
       - geography-db
-    ports:
-      - "4000:4000"
+    expose:
+      - "4000"
