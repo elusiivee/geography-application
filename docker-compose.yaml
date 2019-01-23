@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 
 services:
   geography-db:
@@ -14,5 +14,4 @@ services:
       - geography-db
     ports:
       - "4000:4000"
-    environment:
-      WAIT_HOSTS: geography-db:27017
+    command: sh wait-mongo.sh
