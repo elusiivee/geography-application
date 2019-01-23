@@ -1,11 +1,14 @@
 FROM node:8.14-alpine
 
-RUN mkdir -p /usr/src/app
+LABEL mantainer="egormaksimchuk@gmail.com"
+
 WORKDIR /usr/src/app
 
+COPY package.json /usr/src/app
+COPY wait-mongo.sh /usr/src/app
+RUN apk add curl --no-cache && npm install && chmod 755 wait-mongo.sh
 COPY . /usr/src/app
-RUN npm install
 
 EXPOSE 4000
 
-CMD npm start
+CMD ["node", "app.js"]

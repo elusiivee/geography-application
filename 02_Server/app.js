@@ -1,14 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const swaggerUi = require('swagger-ui-express');
 const router = require('./routers/api');
-const swaggerDocument = require('./swagger.json');
+
 
 // set up express app
 const app = express();
 
-// connect to mongodb
+// connect to mongodb geography-db
 mongoose.connect('mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin');
 mongoose.Promise = global.Promise;
 
@@ -26,9 +25,13 @@ app.use(function(err, req, res) {
   console.log(err); // to see properties of message in our console
   res.status(422).send({ error: err.message });
 });
-// add swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1', router);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 // listen for requests
 app.listen(process.env.port || 4000, function() {
