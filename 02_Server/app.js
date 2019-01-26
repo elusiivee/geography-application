@@ -4,15 +4,14 @@ const corsMiddleware = require('cors');
 const router = require('./routers/api');
 const errorMiddleware = require('./middleware/errorMiddleware');
 
+require('dotenv').config();
+
 // set up express app
 const app = express();
 
 // connect to mongodb geography-db
-
-// TODO: вынести секреты в .env?
-mongoose.connect(
-  'mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin',
-);
+// TODO: connect, then start server!
+mongoose.connect(process.env.MONGODB_URL);
 mongoose.Promise = global.Promise;
 
 /*
