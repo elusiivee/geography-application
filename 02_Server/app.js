@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const corsMiddleware = require('cors');
-const questionRotes = require('./routes/questionRoutes');
+const questionRoutes = require('./routes/questionRoutes');
 const errorMiddleware = require('./middleware/errorMiddleware');
 
 require('dotenv').config();
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(corsMiddleware());
 
 // Initialize routes
-app.use('/questions', questionRotes);
+app.use('/questions', questionRoutes);
 
 // Error handling middleware
 app.use(errorMiddleware);
