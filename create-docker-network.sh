@@ -8,7 +8,7 @@ docker run -d -it -p 27017:27017 --name=geography-db --network geo-net geo-db
 docker start geography-db
 
 cd ../02_Server/
-docker build -t geo-srv .
+docker build -f Dockerfile.single -t geo-srv .
 docker run -d -it -p 4000:4000 --name=geography-server --network geo-net geo-srv
 docker start geography-server
 

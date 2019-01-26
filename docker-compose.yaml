@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3'
 
 services:
   geography-db:
@@ -9,7 +9,9 @@ services:
       - "27017:27017"
   geography-server:
     container_name: geography-server
-    build: 02_Server/.
+    build:
+      context: 02_Server/.
+      dockerfile: Dockerfile.compose
     depends_on:
       - geography-db
     ports:
