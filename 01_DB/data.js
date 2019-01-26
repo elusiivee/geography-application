@@ -1,3 +1,4 @@
+// TODO: Можно заменить правильный ответ на индекс?
 var data = [{
   'question': 'Which planet having all the circumstances for the existence of life?',
   'answers': ['Earth', 'Moon', 'Sun', 'Jupiter'],
