@@ -21,7 +21,13 @@ const styles = theme => ({
 class Answers extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    items: PropTypes.arrayOf(PropTypes.string).isRequired,
+    items: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.string,
+  };
+
+  static defaultProps = {
+    items: [],
+    value: '',
   };
 
   handleChange = event => {

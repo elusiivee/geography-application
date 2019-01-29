@@ -6,9 +6,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
+import Modal from '../Modal/Modal';
 import Answers from './Answers';
 
 const styles = theme => ({
@@ -24,8 +23,9 @@ const styles = theme => ({
   actionsContainer: {
     marginBottom: theme.spacing.unit * 2,
   },
-  resetContainer: {
-    padding: theme.spacing.unit * 3,
+  quizActionsContainer: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
   },
 });
 
@@ -34,10 +34,14 @@ const getSteps = data => data.map(({ id, question }) => ({ id, question }));
 const getStepContent = (data, stepIndex) => data[stepIndex].answers;
 
 class Questionnaire extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object,
+  };
   state = {
     activeStep: 0,
     selectedAnswerIdx: null,
     steps: getSteps(this.props.questions),
+    isModalOpen: false,
   };
 
   handleAnswerSelect = idx => {
@@ -48,6 +52,7 @@ class Questionnaire extends React.Component {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
       selectedAnswerIdx: null,
+      isModalOpen: state.activeStep + 1 === state.steps.length,
     }));
   };
 
@@ -60,12 +65,21 @@ class Questionnaire extends React.Component {
   handleReset = () => {
     this.setState({
       activeStep: 0,
+      isModalOpen: false,
     });
+  };
+
+  handleOpenModal = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ isModalOpen: false });
   };
 
   render() {
     const { classes } = this.props;
-    const { activeStep, selectedAnswerIdx, steps } = this.state;
+    const { activeStep, selectedAnswerIdx, steps, isModalOpen } = this.state;
 
     return (
       <div className={classes.root}>
@@ -96,21 +110,36 @@ class Questionnaire extends React.Component {
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={this.handleReset} className={classes.button}>
-              Reset
+
+        {activeStep !== steps.length && (
+          <div className={classes.quizActionsContainer}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleOpenModal}
+              className={classes.button}
+            >
+              Show results
             </Button>
-          </Paper>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleReset}
+              className={classes.button}
+            >
+              Retry
+            </Button>
+          </div>
         )}
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={this.handleCloseModal}
+          onRetry={this.handleReset}
+        />
       </div>
     );
   }
 }
-
-Questionnaire.propTypes = {
-  classes: PropTypes.object,
-};
 
 export default withStyles(styles)(Questionnaire);
