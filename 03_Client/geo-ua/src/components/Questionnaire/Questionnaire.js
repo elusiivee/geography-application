@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import Answers from './Answers';
+
 const styles = theme => ({
   root: {
     width: '800px',
@@ -27,20 +29,25 @@ const styles = theme => ({
   },
 });
 
-const getSteps = data => data.map(({ question }) => question);
+const getSteps = data => data.map(({ id, question }) => ({ id, question }));
 
 const getStepContent = (data, stepIndex) => data[stepIndex].answers;
 
 class Questionnaire extends React.Component {
   state = {
     activeStep: 0,
-    selectedAnswer: null,
+    selectedAnswerIdx: null,
     steps: getSteps(this.props.questions),
+  };
+
+  handleAnswerSelect = idx => {
+    this.setState({ selectedAnswerIdx: idx });
   };
 
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
+      selectedAnswerIdx: null,
     }));
   };
 
@@ -58,29 +65,24 @@ class Questionnaire extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { activeStep, selectedAnswer, steps } = this.state;
+    const { activeStep, selectedAnswerIdx, steps } = this.state;
 
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+          {steps.map(({ id, question }, index) => (
+            <Step key={id}>
+              <StepLabel>{question}</StepLabel>
               <StepContent>
-                <Typography>
-                  {getStepContent(this.props.questions, index)}
-                </Typography>
+                <Answers
+                  items={getStepContent(this.props.questions, index)}
+                  value={selectedAnswerIdx}
+                  onSelect={this.handleAnswerSelect}
+                />
                 <div className={classes.actionsContainer}>
                   <div>
-                    {/* <Button
-                      disabled={activeStep === 0}
-                      onClick={this.handleBack}
-                      className={classes.button}
-                    >
-                      Back
-                    </Button> */}
                     <Button
-                      // disabled={selectedAnswer === null}
+                      disabled={selectedAnswerIdx === null}
                       variant="contained"
                       color="primary"
                       onClick={this.handleNext}
