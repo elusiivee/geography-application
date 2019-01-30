@@ -3,31 +3,31 @@
     "id": 1,
     "question": "Which planet having all the circumstances for the existence of life?",
     "answers": ["Earth", "Moon", "Sun", "Jupiter"],
-    "answer": "Earth",
+    "answer": "0",
     "weight": 1
   },
   {
     "id": 2,
     "question": "The age of earth?",
     "answers": [
-      "About 4600 million years.",
       "About 5600 million years.",
       "About 80000 million years.",
+      "About 4600 million years.",
       "About 46000 million years."
     ],
-    "answer": "About 4600 million years.",
+    "answer": "2",
     "weight": 1
   },
   {
     "id": 3,
     "question": "The man who first assessed the mass of the earth?",
     "answers": [
-      "Dr. Nevil Maskelyne",
       "Albert Einstein",
+      "Dr. Nevil Maskelyne",
       "Andrei Sakharov",
       "Sigmund Freud"
     ],
-    "answer": "Dr. Nevil Maskelyne",
+    "answer": "1",
     "weight": 1
   }
 ]

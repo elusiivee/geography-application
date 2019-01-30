@@ -33,6 +33,20 @@ const getSteps = data => data.map(({ id, question }) => ({ id, question }));
 
 const getStepContent = (data, stepIndex) => data[stepIndex].answers;
 
+// TODO: доделать
+const getResults = (questions, selectedAnswers) => {
+  const correctAnswers = questions.map(q => q.answer);
+
+  console.log('correctAnswers: ', correctAnswers);
+  console.log('selectedAnswers: ', selectedAnswers);
+
+  const allCorrect = questions.every(
+    (question, idx) => question.answer === selectedAnswers[idx],
+  );
+
+  console.log(allCorrect);
+};
+
 class Questionnaire extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
@@ -42,15 +56,19 @@ class Questionnaire extends React.Component {
     selectedAnswerIdx: null,
     steps: getSteps(this.props.questions),
     isModalOpen: false,
+    selectedAnswers: [],
   };
 
   handleAnswerSelect = idx => {
-    this.setState({ selectedAnswerIdx: idx });
+    this.setState({
+      selectedAnswerIdx: idx,
+    });
   };
 
   handleNext = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
+      selectedAnswers: [...state.selectedAnswers, state.selectedAnswerIdx],
       selectedAnswerIdx: null,
       isModalOpen: state.activeStep + 1 === state.steps.length,
     }));
@@ -80,6 +98,8 @@ class Questionnaire extends React.Component {
   render() {
     const { classes } = this.props;
     const { activeStep, selectedAnswerIdx, steps, isModalOpen } = this.state;
+
+    getResults(this.props.questions, this.state.selectedAnswers);
 
     return (
       <div className={classes.root}>
@@ -111,7 +131,7 @@ class Questionnaire extends React.Component {
           ))}
         </Stepper>
 
-        {activeStep !== steps.length && (
+        {activeStep === steps.length && (
           <div className={classes.quizActionsContainer}>
             <Button
               variant="contained"
@@ -136,7 +156,9 @@ class Questionnaire extends React.Component {
           isOpen={isModalOpen}
           onClose={this.handleCloseModal}
           onRetry={this.handleReset}
-        />
+        >
+          {this.state.selectedAnswers}
+        </Modal>
       </div>
     );
   }
