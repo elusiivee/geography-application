@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Questionnaire from './Questionnaire';
-import questions from '../questions.json';
+import Spinner from './Spinner';
+import * as API from '../utils/api';
 
 export default class App extends Component {
   state = {
@@ -8,11 +9,16 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    // TODO: HTTP-запрос сюда
-    this.setState({ questions });
+    API.fetchQuesions().then(questions => this.setState({ questions }));
   }
 
   render() {
-    return <Questionnaire questions={questions} />;
+    const { questions } = this.state;
+
+    return questions.length > 0 ? (
+      <Questionnaire questions={questions} />
+    ) : (
+      <Spinner />
+    );
   }
 }
