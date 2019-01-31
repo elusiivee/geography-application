@@ -11,7 +11,7 @@ const styles = theme => ({
     display: 'flex',
   },
   formControl: {
-    // margin: theme.spacing.unit * 3,
+    margin: theme.spacing.unit * 2,
   },
   group: {
     margin: `${theme.spacing.unit}px 0`,
@@ -22,16 +22,16 @@ class Answers extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     items: PropTypes.arrayOf(PropTypes.string),
-    value: PropTypes.string,
+    value: PropTypes.number,
   };
 
   static defaultProps = {
     items: [],
-    value: '',
+    value: null,
   };
 
   handleChange = event => {
-    this.props.onSelect(event.target.value);
+    this.props.onSelect(Number(event.target.value));
   };
 
   render() {

@@ -1,13 +1,13 @@
 [
   {
-    "id": 1,
+    "id": "id-1",
     "question": "Which planet having all the circumstances for the existence of life?",
     "answers": ["Earth", "Moon", "Sun", "Jupiter"],
-    "answer": "0",
+    "answer": 0,
     "weight": 1
   },
   {
-    "id": 2,
+    "id": "id-2",
     "question": "The age of earth?",
     "answers": [
       "About 5600 million years.",
@@ -15,11 +15,11 @@
       "About 4600 million years.",
       "About 46000 million years."
     ],
-    "answer": "2",
+    "answer": 2,
     "weight": 1
   },
   {
-    "id": 3,
+    "id": "id-3",
     "question": "The man who first assessed the mass of the earth?",
     "answers": [
       "Albert Einstein",
@@ -27,7 +27,7 @@
       "Andrei Sakharov",
       "Sigmund Freud"
     ],
-    "answer": "1",
+    "answer": 1,
     "weight": 1
   }
 ]

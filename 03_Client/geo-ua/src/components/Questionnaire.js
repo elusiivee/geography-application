@@ -7,12 +7,13 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 
-import Modal from '../Modal/Modal';
+import Modal from './Modal';
 import Answers from './Answers';
+import { getSteps, getStepContent, countScore } from '../utils/helpers';
 
 const styles = theme => ({
   root: {
-    width: '800px',
+    width: 560,
     marginRight: 'auto',
     marginLeft: 'auto',
   },
@@ -23,34 +24,20 @@ const styles = theme => ({
   actionsContainer: {
     marginBottom: theme.spacing.unit * 2,
   },
-  quizActionsContainer: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-  },
 });
-
-const getSteps = data => data.map(({ id, question }) => ({ id, question }));
-
-const getStepContent = (data, stepIndex) => data[stepIndex].answers;
-
-// TODO: доделать
-const getResults = (questions, selectedAnswers) => {
-  const correctAnswers = questions.map(q => q.answer);
-
-  console.log('correctAnswers: ', correctAnswers);
-  console.log('selectedAnswers: ', selectedAnswers);
-
-  const allCorrect = questions.every(
-    (question, idx) => question.answer === selectedAnswers[idx],
-  );
-
-  console.log(allCorrect);
-};
 
 class Questionnaire extends React.Component {
   static propTypes = {
     classes: PropTypes.object,
+    questions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        question: PropTypes.string.isRequired,
+        answer: PropTypes.number.isRequired,
+      }).isRequired,
+    ).isRequired,
   };
+
   state = {
     activeStep: 0,
     selectedAnswerIdx: null,
@@ -60,12 +47,10 @@ class Questionnaire extends React.Component {
   };
 
   handleAnswerSelect = idx => {
-    this.setState({
-      selectedAnswerIdx: idx,
-    });
+    this.setState({ selectedAnswerIdx: idx });
   };
 
-  handleNext = () => {
+  handleNextQuestion = () => {
     this.setState(state => ({
       activeStep: state.activeStep + 1,
       selectedAnswers: [...state.selectedAnswers, state.selectedAnswerIdx],
@@ -74,16 +59,12 @@ class Questionnaire extends React.Component {
     }));
   };
 
-  handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
-  };
-
   handleReset = () => {
     this.setState({
       activeStep: 0,
+      selectedAnswerIdx: null,
       isModalOpen: false,
+      selectedAnswers: [],
     });
   };
 
@@ -96,10 +77,16 @@ class Questionnaire extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { activeStep, selectedAnswerIdx, steps, isModalOpen } = this.state;
-
-    getResults(this.props.questions, this.state.selectedAnswers);
+    const { classes, questions } = this.props;
+    const {
+      activeStep,
+      selectedAnswerIdx,
+      selectedAnswers,
+      steps,
+      isModalOpen,
+    } = this.state;
+    // TODO: count only once
+    const score = countScore(questions, selectedAnswers);
 
     return (
       <div className={classes.root}>
@@ -109,56 +96,32 @@ class Questionnaire extends React.Component {
               <StepLabel>{question}</StepLabel>
               <StepContent>
                 <Answers
-                  items={getStepContent(this.props.questions, index)}
+                  items={getStepContent(questions, index)}
                   value={selectedAnswerIdx}
                   onSelect={this.handleAnswerSelect}
                 />
                 <div className={classes.actionsContainer}>
-                  <div>
-                    <Button
-                      disabled={selectedAnswerIdx === null}
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                    </Button>
-                  </div>
+                  <Button
+                    disabled={selectedAnswerIdx === null}
+                    variant="contained"
+                    color="primary"
+                    onClick={this.handleNextQuestion}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
                 </div>
               </StepContent>
             </Step>
           ))}
         </Stepper>
 
-        {activeStep === steps.length && (
-          <div className={classes.quizActionsContainer}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleOpenModal}
-              className={classes.button}
-            >
-              Show results
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleReset}
-              className={classes.button}
-            >
-              Retry
-            </Button>
-          </div>
-        )}
-
         <Modal
           isOpen={isModalOpen}
           onClose={this.handleCloseModal}
           onRetry={this.handleReset}
-        >
-          {this.state.selectedAnswers}
-        </Modal>
+          score={score}
+        />
       </div>
     );
   }
