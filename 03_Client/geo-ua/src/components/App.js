@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Questionnaire from './Questionnaire';
-import Spinner from './Spinner';
+import ProgressBar from './ProgressBar';
 import * as API from '../utils/api';
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    API.fetchQuesions().then(questions => this.setState({ questions }));
+    API.fetchQuesions(5).then(questions => this.setState({ questions }));
   }
 
   render() {
@@ -18,7 +18,7 @@ export default class App extends Component {
     return questions.length > 0 ? (
       <Questionnaire questions={questions} />
     ) : (
-      <Spinner />
+      <ProgressBar />
     );
   }
 }

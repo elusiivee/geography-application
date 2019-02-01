@@ -13,7 +13,7 @@ import { getSteps, getStepContent, countScore } from '../utils/helpers';
 
 const styles = theme => ({
   root: {
-    width: 560,
+    maxWidth: 560,
     marginRight: 'auto',
     marginLeft: 'auto',
   },
@@ -85,8 +85,11 @@ class Questionnaire extends React.Component {
       steps,
       isModalOpen,
     } = this.state;
-    // TODO: count only once
-    const score = countScore(questions, selectedAnswers);
+    let score;
+
+    if (isModalOpen) {
+      score = countScore(questions, selectedAnswers);
+    }
 
     return (
       <div className={classes.root}>

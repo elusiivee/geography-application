@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -25,6 +26,22 @@ const styles = theme => ({
 const Transition = props => <Slide direction="up" {...props} />;
 
 class Modal extends React.Component {
+  static propTypes = {
+    score: PropTypes.shape({
+      total: PropTypes.number.isRequired,
+      passed: PropTypes.bool.isRequired,
+      correct: PropTypes.number.isRequired,
+    }),
+  };
+
+  static defaultProps = {
+    score: {
+      total: 0,
+      passed: false,
+      correct: 0,
+    },
+  };
+
   render() {
     const { isOpen, onRetry, classes, score } = this.props;
 
@@ -38,7 +55,7 @@ class Modal extends React.Component {
       >
         <DialogTitle id="score-dialog-slide-title" className={classes.title}>
           {score.passed
-            ? 'Congratulations, you passed! 🎉'
+            ? 'Congratulations, you passed! 🤓'
             : "You didn't pass, try again! 🤨"}
         </DialogTitle>
         <DialogContent>
