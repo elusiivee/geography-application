@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mongo mongodb://127.0.0.1:27017/geographydb <<EOF
+mongo mongodb://127.0.0.1:27017/$MONGO_INITDB_DATABASE <<EOF
 db.questions.insertMany([{
     "question": "Which planet having all the circumstances for the existence of life?",
     "answers": ["Earth", "Moon", "Sun", "Jupiter"],

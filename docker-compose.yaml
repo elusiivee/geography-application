@@ -7,6 +7,7 @@ services:
     build: 01_DB/.
     ports:
       - '27017:27017'
+    env_file: .env.db
   geography-server:
     container_name: server
     build:
@@ -17,8 +18,6 @@ services:
     ports:
       - '4000:4000'
     command: sh wait-mongo.sh
-    #environment:
-    #  - MONGODB_URL=mongodb://admin:admin@geography-db:27017/geographydb?authSource=admin
     env_file: .env
   geography-frontend:
     container_name: frontend
