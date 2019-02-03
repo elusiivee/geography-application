@@ -3,7 +3,7 @@
 docker network create geo-net
 
 cd 01_DB
-docker build -t geo-db .
+docker build -f Dockerfile.single -t geo-db .
 docker run -d -it -p 27017:27017 --name=geography-db --network geo-net geo-db
 docker start geography-db
 
