@@ -1,6 +1,6 @@
 FROM mongo:latest
 
-LABEL mantainer = egormaksimchuk@gmail.com
+LABEL maintainer = "egormaksimchuk@gmail.com"
 
 ENV MONGO_INITDB_ROOT_USERNAME="admin"
 ENV MONGO_INITDB_ROOT_PASSWORD="admin"
