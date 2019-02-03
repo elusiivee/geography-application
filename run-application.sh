@@ -9,9 +9,10 @@ docker start geography-db
 
 cd ../02_Server/
 docker build -f Dockerfile.single -t geo-srv .
-docker run -d -it -p 4000:4000 -e --name=geography-server --network geo-net geo-srv
+docker run -d -it -p 4000:4000 --name=geography-server --network geo-net geo-srv
 docker start geography-server
 
-sleep 5s
-
-curl -X GET http://localhost:4000/api/questions?number=2 | jq
+cd ../03_Client/geo-ui
+docker build -t geo-ui .
+docker run -d -it -p 3000:3000 --name=geography-frontend --network geo-net geo-ui
+docker start geography-frontend
