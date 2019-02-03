@@ -18,7 +18,7 @@ services:
     ports:
       - '4000:4000'
     command: sh wait-mongo.sh
-    env_file: .env
+    env_file: .env.srv
   geography-frontend:
     container_name: frontend
     hostname: geography-frontend
