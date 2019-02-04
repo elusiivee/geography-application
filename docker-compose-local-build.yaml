@@ -23,7 +23,7 @@ services:
     container_name: frontend
     hostname: geography-frontend
     build:
-      context: 03_Client/geo-ui
+      context: 03_Client/
       dockerfile: Dockerfile.compose
     depends_on:
       - geography-server

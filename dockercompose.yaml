@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  geography-db:
+    image: yemax/geography-db:1
+    container_name: db
+    hostname: geography-db
+    ports:
+      - '27017:27017'
+    env_file: .env.db
+  geography-server:
+    image: yemax/geography-server:1
+    container_name: server
+    depends_on:
+      - geography-db
+    ports:
+      - '4000:4000'
+    command: sh wait-mongo.sh
+    env_file: .env.srv
+  geography-frontend:
+    image: yemax/geography-frontend:1
+    container_name: frontend
+    hostname: geography-frontend
+    depends_on:
+      - geography-server
+    ports:
+      - '3000:3000'
