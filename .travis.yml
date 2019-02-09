@@ -1,1 +1,4 @@
 language: node.js
+
+services:
+  - docker

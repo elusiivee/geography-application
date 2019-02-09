@@ -8,5 +8,5 @@ RUN apk add curl --no-cache && npm install && chmod 755 wait-mongo.sh
 COPY . /usr/src/app
 
 EXPOSE 4000
-USER 1
+
 CMD ["node", "app.js"]

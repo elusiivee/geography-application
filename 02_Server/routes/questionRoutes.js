@@ -14,7 +14,7 @@ const serverError = () => {
  * TODO: Если REST то /questions пусть отдает и так все вопросы?
  */
 // get a list of questions from the db
-router.get('/all', (req, res) => {
+router.get('/', (req, res) => {
   Question.find()
     .then(questions => {
       console.log('Show all questions.');
@@ -23,17 +23,14 @@ router.get('/all', (req, res) => {
     .catch(serverError);
 });
 
-/*
- * TODO: Для получения отпределенного кол-ва вопросов
- * лучше юзать строку запроса вроде /questions/?amount=5
- */
+
 // get a specific amount of questions from the db
 router.get('/', (req, res) => {
   Question.find()
     .then(questions => {
-      let number = req.query.number;
-      console.log('Show ' + number + ' questions.');
-      let result = questions.slice(0, number);
+      let questionAmount = req.query.amount;
+      console.log('Show ' + questionAmount + ' questions.');
+      let result = questions.slice(0, questionAmount);
       res.json(result);
     })
     .catch(serverError);
