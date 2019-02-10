@@ -5,6 +5,6 @@ const mapper = questions =>
 
 export const fetchQuesions = amount =>
     axios
-    .get(`http://localhost:4000/questions?number=${amount}`)
+    .get(`http://${process.env.GEO_SRV}/questions?number=${amount}`)
     .then(({ data }) => mapper(data))
     .catch(console.log);

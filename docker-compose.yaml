@@ -15,7 +15,6 @@ services:
       - geography-db
     ports:
       - '4000:4000'
-    command: sh wait-mongo.sh
     env_file: .env.srv
   geography-frontend:
     image: yemax/geography-frontend:1
