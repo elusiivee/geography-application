@@ -10,6 +10,7 @@ services:
     env_file: .env.db
   geography-server:
     image: yemax/geography-server:1
+    hostname: geography-server
     container_name: server
     depends_on:
       - geography-db
@@ -24,3 +25,5 @@ services:
       - geography-server
     ports:
       - '3000:3000'
+    env_file:
+      - .env.ui
