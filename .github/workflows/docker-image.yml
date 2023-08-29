@@ -16,15 +16,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set tag
-        run: echo "tag_name=$(date +%s)"
-
       - name: Build the Docker image
         shell: bash
         run: |
+          echo "TAG_NAME='$(date +%s)'" >> "$GITHUB_ENV"
           cd ./01_DB
-          docker build . --file Dockerfile.single --tag  geo-db:$(tag_name)
+          docker build . --file Dockerfile.single --tag  geo-db:${{ enb.TAG_NAME }}
 
       - name: Push docker image to docker.hub
         run: |
-          docker push geo-db:$(tag_name)
+          docker push geo-db:${{ enb.TAG_NAME }}
