@@ -21,8 +21,8 @@ jobs:
         run: |
           echo "TAG_NAME='$(date +%s)'" >> "$GITHUB_ENV"
           cd ./01_DB
-          docker build . --file Dockerfile.single --tag  geo-db:${{ enb.TAG_NAME }}
+          docker build . --file Dockerfile.single --tag  geo-db:${{ env.TAG_NAME }}
 
       - name: Push docker image to docker.hub
         run: |
-          docker push geo-db:${{ enb.TAG_NAME }}
+          docker push geo-db:${{ env.TAG_NAME }}
