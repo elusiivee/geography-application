@@ -20,8 +20,8 @@ jobs:
         shell: bash
         run: |
           cd ./01_DB
-          docker build . --file Dockerfile.single --tag  geo-db:24
+          docker build . --file Dockerfile.single --tag  yemax/geo-db:24
 
       - name: Push docker image to docker.hub
         run: |
-          docker push geo-db:24
+          docker push yemax/geo-db:24
