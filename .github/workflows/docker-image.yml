@@ -19,7 +19,8 @@ jobs:
       - name: Build the Docker image
         shell: bash
         run: |
-          echo "TAG_NAME='$(date +%s)'" >> "$GITHUB_ENV"
+          timestampt="$(date +%s)"
+          echo "TAG_NAME=$timestampt" >> "$GITHUB_ENV"
           cd ./01_DB
           docker build . --file Dockerfile.single --tag  geo-db:${{ env.TAG_NAME }}
 
