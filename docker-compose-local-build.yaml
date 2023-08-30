@@ -2,7 +2,7 @@ version: '3'
 
 services:
   geography-db:
-    container_name: db
+    container_name: geography-db
     hostname: geography-db
     build: 01_DB/.
     ports:
@@ -17,7 +17,7 @@ services:
       - geography-db
     ports:
       - '4000:4000'
-    command: sh wait-mongo.sh
+#    command: sh wait-mongo.sh
     env_file: .env.srv
   geography-frontend:
     container_name: frontend
