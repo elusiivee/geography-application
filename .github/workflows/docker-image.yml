@@ -35,7 +35,7 @@ jobs:
   send_notification_to_slack:
     name: Slack push
     needs: build
-    uses: ./.github/workflows/slack-notification.yml
+    uses: ./.github/workflows/slack-notification.yaml
     secrets: inherit
   
   
