@@ -28,6 +28,7 @@ jobs:
 
   send_notification:
     name: Telegram push
+      needs: build
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
     
