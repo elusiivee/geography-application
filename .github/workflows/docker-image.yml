@@ -25,3 +25,9 @@ jobs:
       - name: Push docker image to docker.hub
         run: |
           docker push yemax/geo-db:24
+
+  send_notification:
+    name: Telegram push
+    uses: ./.github/workflows/telegram-notification.yaml
+    
+  
