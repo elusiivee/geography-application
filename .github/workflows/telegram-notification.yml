@@ -1,3 +1,4 @@
+name: Telegram Demo
 on:
   workflow_dispatch:
   push:
