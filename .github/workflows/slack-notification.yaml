@@ -1,4 +1,4 @@
-name: Telegram Demo
+name: Slack Demo
 on:
   workflow_dispatch:
   workflow_call:
@@ -16,3 +16,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_TITLE: "Sent From GitHub Action"
+        SLACK_MESSAGE: "Prog Kyiv UA Slack Demo"
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_FOOTER: "Footer message"
