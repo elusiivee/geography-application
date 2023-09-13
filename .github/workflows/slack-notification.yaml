@@ -1,1 +1,21 @@
+name: Telegram Demo
+on:
+  workflow_dispatch:
+  workflow_call:
+  # push:
+    # branches: [ "master" ]
+  # pull_request:
+    # branches: [ "master" ]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: slack-send  
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        channel-id: # optional
+        slack-message: # optional
+        payload: # optional
+        payload-file-path: # optional
+        update-ts: # optional
