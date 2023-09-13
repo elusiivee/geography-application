@@ -26,10 +26,16 @@ jobs:
         run: |
           docker push yemax/geo-db:24
 
-  send_notification:
+  send_notification_to_telegram:
     name: Telegram push
-      needs: build
+    needs: build
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
-    
+
+  send_notification_to_slack:
+    name: Slack push
+    needs: build
+    uses: ./.github/workflows/slack-notification.yml
+    secrets: inherit
+  
   
