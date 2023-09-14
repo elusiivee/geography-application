@@ -33,7 +33,7 @@ jobs:
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
     with:
-      status: jobs.build_image.status
+      status: build_image.status
 
   send_notification_to_slack:
     name: Slack push
