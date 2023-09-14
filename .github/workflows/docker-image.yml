@@ -31,6 +31,8 @@ jobs:
     needs: build
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
+    with:
+      status: ${{ build.status }}
 
   send_notification_to_slack:
     name: Slack push
