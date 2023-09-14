@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build_image:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,17 +28,16 @@ jobs:
 
   
   send_notification_to_telegram:
-    if: ${{ success() }}
     name: Telegram push
-    needs: build
+    needs: build_image
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
     with:
-      status: passed
+      status: ${{ build_image.status }}
 
   send_notification_to_slack:
     name: Slack push
-    needs: build
+    needs: build_image
     uses: ./.github/workflows/slack-notification.yaml
     secrets: inherit
   
