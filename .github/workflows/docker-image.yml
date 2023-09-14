@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-  job_id: docker_build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +26,9 @@ jobs:
         run: |
           docker push yemax/geo-db:24
 
+  
   send_notification_to_telegram:
+    if: ${{ success() }}
     name: Telegram push
     needs: build
     uses: ./.github/workflows/telegram-notification.yml
