@@ -2,6 +2,11 @@ name: Telegram Demo
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      status:
+        required: false
+        default: passed
+        type: string
   # push:
     # branches: [ "master" ]
   # pull_request:
@@ -17,6 +22,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
+            Status is: ${{ inputs.status }}
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
