@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+  job_id: docker_build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,7 +33,7 @@ jobs:
     uses: ./.github/workflows/telegram-notification.yml
     secrets: inherit
     with:
-      status: ${{ jobs.build.status }}
+      status: ${{ jobs.docker_build.status }}
 
   send_notification_to_slack:
     name: Slack push
