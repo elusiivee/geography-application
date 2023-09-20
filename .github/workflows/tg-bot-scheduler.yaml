@@ -1,5 +1,20 @@
+name: Telegram Demo Scheduler
 
 on:
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '30 5,17 * * *'
+    - cron:  '0 8 * * *'
+    - timezone: 'Ukraine/Kyiv'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: send telegram message on push
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.DARK_NET_TG_TOKEN }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+            Олеже, як же не соромно тобі досі класти на парсер?
+            
+
