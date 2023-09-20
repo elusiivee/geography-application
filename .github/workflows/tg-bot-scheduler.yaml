@@ -2,8 +2,7 @@ name: Telegram Demo Scheduler
 
 on:
   schedule:
-    - cron:  '0 8 * * *'
-    - timezone: 'Ukraine/Kyiv'
+    - cron:  '0 5 * * *'
 
 jobs:
   build:
