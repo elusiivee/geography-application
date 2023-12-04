@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   geography-db:
-    image: yemax/geography-db:1
+    image: maxkhal/geography-db:2
     container_name: geography-db
     hostname: geography-db
     ports:
@@ -11,7 +11,7 @@ services:
     networks:
       - geography-network
   geography-server:
-    image: yemax/geography-server:1
+    image: maxkhal/geography-server:2
     hostname: geography-server
     container_name: server
     depends_on:
@@ -22,7 +22,7 @@ services:
     networks:
       - geography-network
   geography-frontend:
-    image: yemax/geography-frontend:1
+    image: maxkhal/geography-frontend:5
     container_name: frontend
     hostname: geography-frontend
     depends_on:
