@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Set tag
-      run: echo "TAG_NAME='$(date +%s)'" >> "$GITHUB_ENV"
+      run: echo "TAG_NAME=$(date +%s)" >> "$GITHUB_ENV"
 
     - name: Build the Docker image
       shell: bash
