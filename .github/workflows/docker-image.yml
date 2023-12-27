@@ -29,13 +29,13 @@ jobs:
         cd ./01_DB
         docker build . --file Dockerfile.single --tag geo-db:$TAG_NAME
 
-    # - name: Push Docker image to Docker.Hub
-    #  run: |
-    #    docker push geo-db:$TAG_NAME
+    - name: Push Docker image to Docker.Hub
+      run: |
+        docker push maxkhal/geo-db:$TAG_NAME
         
-    - name: Build and push
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: user/app:$TAG_NAME
+    # - name: Build and push
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: .
+    #     push: true
+    #     tags: user/app:$TAG_NAME
