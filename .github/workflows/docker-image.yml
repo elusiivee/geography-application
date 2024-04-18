@@ -1,0 +1,23 @@
+name: Docker Image CI GeoApp
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd 01_DB
+        docker build . --file Dockerfile.single --tag geo-db:$(date +%s)
+        
+    - name: Push Docker image to Docker.Hub
+      run: docker push geo-db
