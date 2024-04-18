@@ -14,12 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Set tag
-      run: export tag_name=$(date +%s)
+      run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
+      
     - name: Build the Docker image
       run: |
         cd 01_DB
-        docker build . --file Dockerfile.single --tag geo-db:$tag_name
+        docker build . --file Dockerfile.single --tag geo-db:$TAG_NAME
         
     - name: Push Docker image to Docker.Hub
-      run: docker push geo-db:$tag_name
+      run: docker push geo-db:$TAG_NAME
